@@ -16,4 +16,7 @@ public interface UserService extends UserDetailsService {
     User getUserById(int userId);
     boolean addUser(User user);
     List<User> getUsers(String username);
+    boolean updateUser(User user, int id);
+    
+    boolean checkUserName(String username);
 }

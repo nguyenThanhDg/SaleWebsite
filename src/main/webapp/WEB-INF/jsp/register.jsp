@@ -40,7 +40,7 @@
                                 </div>
                                 <div class="col-md-12 mb-20">
                                     <label>Số điện thoại</label>
-                                    <form:input type="tel" id="phone" path="phone" class="mb-0" />
+                                    <form:input type="number" id="phone" path="phone" class="mb-0" />
                                     <form:errors path="phone" cssClass="text-danger" element="div" />
                                 </div>
                                 <div class="col-md-12 mb-20">
@@ -50,7 +50,7 @@
                                         <option value="seller">Người bán</option>
                                       
                                     </form:select>
-                                    <form:errors path="username" cssClass="text-danger" element="div" />
+                                    <form:errors path="userRole" cssClass="text-danger" element="div" />
                                 </div>
                                 <div class="col-md-12 mb-20">
                                     <label>Tên đăng nhập</label>

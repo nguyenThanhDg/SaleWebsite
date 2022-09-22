@@ -91,7 +91,6 @@ public class User implements Serializable {
     @Column(name = "active")
     private Boolean active;
     @Basic(optional = false)
-    @NotNull
     @Column(name = "created_date")
     @Temporal(TemporalType.DATE)
     private Date createdDate;
@@ -109,12 +108,16 @@ public class User implements Serializable {
     @Transient
     @JsonIgnore
     private String confirmPassword;
+    @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "sellerId")
     private Set<Product> productSet;
+    @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "customerId")
     private Set<Rating> ratingSet;
+    @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "customerId")
     private Set<Comment> commentSet;
+    @JsonIgnore
     @OneToMany(mappedBy = "customerId")
     private Set<Order> order1Set;
 
