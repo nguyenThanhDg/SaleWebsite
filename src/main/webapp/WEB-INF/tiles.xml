@@ -24,5 +24,9 @@
     <definition name="index1" template="/WEB-INF/jsp/index.jsp">
         
     </definition>
+    <definition name="single-product" extends="baseLayout">
+        <put-attribute name="title" value="Single Product" />
+        <put-attribute name="content" value="/WEB-INF/jsp/single-product.jsp" />
+    </definition>
 </tiles-definitions>
 
