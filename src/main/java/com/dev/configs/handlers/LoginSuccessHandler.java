@@ -27,7 +27,7 @@ public class LoginSuccessHandler implements AuthenticationSuccessHandler{
     public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication a) throws IOException, ServletException {
         User u = this.userDetailsService.getUsers(a.getName()).get(0);
         request.getSession().setAttribute("currentUser", u);
-        response.sendRedirect("/DeliveryWeb");
+        response.sendRedirect("/SaleWebsite");
     }
     
 }

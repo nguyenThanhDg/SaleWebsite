@@ -40,7 +40,6 @@ public class UserServiceImpl implements UserService {
         try {
             String pass = user.getPassword();
             user.setPassword(this.passwordEncoder.encode(pass));
-            user.setUserRole(user.getUserRole());
             Map r = this.cloudinary.uploader().upload(user.getFile().getBytes(),
                     ObjectUtils.asMap("resource_type", "auto"));
             user.setAvatar((String) r.get("secure_url"));
@@ -54,7 +53,7 @@ public class UserServiceImpl implements UserService {
 
         return false;
     }
-    
+
     @Override
     public List<User> getUsers(String username) {
         return userRepository.getUsers(username);
@@ -76,6 +75,17 @@ public class UserServiceImpl implements UserService {
     @Override
     public User getUserById(int id) {
         return this.userRepository.getUserById(id);
+    }
+
+    
+    @Override
+    public boolean updateUser(User user, int id) {
+        return this.userRepository.updateUser(user, id);
+    }
+
+    @Override
+    public boolean checkUserName(String string) {
+        return this.userRepository.checkUserName(string);
     }
 
     

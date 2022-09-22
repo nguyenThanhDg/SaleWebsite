@@ -6,6 +6,8 @@ package com.dev.controller;
 
 import com.dev.pojo.User;
 import com.dev.service.UserService;
+import com.dev.validator.UsernameValidator;
+import com.dev.validator.WebAppValidator;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -29,7 +31,7 @@ public class UserController {
     
 //    @Autowired
 //    private WebAppValidator userValidator;
-    
+//    
 //    @InitBinder
 //    public void initBinder(WebDataBinder binder){
 //        binder.setValidator(userValidator);
@@ -45,10 +47,10 @@ public class UserController {
         model.addAttribute("user", new User());
         return "register";
     }
-    
 
     @PostMapping("/register")
     public String register(Model model, @ModelAttribute(value = "user") @Valid User user, BindingResult result) {
+        System.out.println(result);
         if (!result.hasErrors()) {
             if (!user.getPassword().equals(user.getConfirmPassword())) {
                 model.addAttribute("errMsg", "Mat khau khong hop le");

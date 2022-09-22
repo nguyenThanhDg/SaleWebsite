@@ -47,7 +47,7 @@ public class UserRepositoryImpl implements UserRepository {
         return false;
     }
 
-   @Override
+    @Override
     public List<User> getUsers(String username) {
         Session session = this.sessionFactory.getObject().getCurrentSession();
         CriteriaBuilder builder = session.getCriteriaBuilder();
@@ -61,4 +61,41 @@ public class UserRepositoryImpl implements UserRepository {
         Query q = session.createQuery(query);
         return q.getResultList();
     }
+
+
+    @Override
+    public boolean updateUser(User user, int id) {
+        Session session = this.sessionFactory.getObject().getCurrentSession();
+        try {
+            System.err.println(user.getFirstName());
+
+            User u = session.get(User.class, id);
+            System.err.println(u.getFirstName());
+            u.setFirstName(user.getFirstName());
+            u.setLastName(user.getLastName());
+            u.setEmail(user.getEmail());
+            u.setPhone(user.getPhone());
+            session.update(u);
+
+            return true;
+        } catch (HibernateException ex) {
+            System.err.println(ex.getMessage());
+        }
+
+        return false;
+    }
+
+
+    @Override
+    public boolean checkUserName(String username) {
+        Session session = this.sessionFactory.getObject().getCurrentSession();
+        Query q = session.createQuery("SELECT count(*) FROM User u WHERE u.username = :username");
+        q.setParameter("username", username);
+        if (Long.parseLong(q.getSingleResult().toString()) > 0) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+
 }

@@ -6,6 +6,8 @@ package com.dev.configs;
 
 import com.cloudinary.Cloudinary;
 import com.cloudinary.utils.ObjectUtils;
+import com.dev.validator.UsernameValidator;
+import com.dev.validator.WebAppValidator;
 import java.util.HashSet;
 import java.util.Set;
 import org.springframework.context.MessageSource;
@@ -71,14 +73,14 @@ public class WebAppContextConfig implements WebMvcConfigurer {
         return source;
     }
     
-//    @Bean
-//    public WebAppValidator userValidator(){
-//        Set<Validator> springValidators = new HashSet<>();
-//        springValidators.add(new UsernameValidator());
-//        WebAppValidator valid = new WebAppValidator();
-//        valid.setSpringValidators(springValidators);
-//        return valid;
-//    }
+    @Bean
+    public WebAppValidator userValidator(){
+        Set<Validator> springValidators = new HashSet<>();
+        springValidators.add(new UsernameValidator());
+        WebAppValidator valid = new WebAppValidator();
+        valid.setSpringValidators(springValidators);
+        return valid;
+    }
 
     @Bean
     public InternalResourceViewResolver getInternalResourceViewResolver() {
